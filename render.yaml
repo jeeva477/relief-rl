@@ -1,0 +1,17 @@
+﻿services:
+  - type: web
+    name: relief-rl-api
+    runtime: python
+    buildCommand: pip install -r requirements-backend.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DEMO_MODE
+        value: "true"
+      - key: APP_ENV
+        value: production
+      - key: MODEL_PATH
+        value: rl/checkpoints/best_model.pt
+      - key: QRDQN_MODEL_PATH
+        value: rl/checkpoints/qrdqn_best_model.pt
+      - key: CORS_ORIGINS
+        value: "*"
