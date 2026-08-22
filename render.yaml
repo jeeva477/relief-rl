@@ -2,8 +2,11 @@
   - type: web
     name: relief-rl-api
     runtime: python
+    region: oregon
+    plan: free
     buildCommand: pip install -r requirements-backend.txt
     startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
     envVars:
       - key: DEMO_MODE
         value: "true"
@@ -15,3 +18,5 @@
         value: rl/checkpoints/qrdqn_best_model.pt
       - key: CORS_ORIGINS
         value: "*"
+      - key: LOG_LEVEL
+        value: INFO

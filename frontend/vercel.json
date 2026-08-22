@@ -1,8 +1,17 @@
 ﻿{
   "rewrites": [
+    { "source": "/api/:path*", "destination": "https://relief-rl-api.onrender.com/api/:path*" },
+    { "source": "/health", "destination": "https://relief-rl-api.onrender.com/health" },
+    { "source": "/ready", "destination": "https://relief-rl-api.onrender.com/ready" },
+    { "source": "/ws/:path*", "destination": "https://relief-rl-api.onrender.com/ws/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
     }
   ]
 }
