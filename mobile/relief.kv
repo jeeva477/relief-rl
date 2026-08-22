@@ -1,0 +1,119 @@
+#:import dp kivy.metrics.dp
+
+<StatusBar>:
+    size_hint_y: None
+    height: dp(58)
+    padding: dp(12)
+    spacing: dp(12)
+    Label:
+        text: root.status
+        bold: True
+    Label:
+        text: "RISK: " + root.risk
+
+<MetricsPanel>:
+    cols: 2
+    padding: dp(10)
+    spacing: dp(6)
+    Label:
+        text: "Safety: " + root.safety
+    Label:
+        text: "Distance: " + root.distance
+    Label:
+        text: "ETA: " + root.eta
+    Label:
+        text: "Hazard: " + root.hazard
+
+<RoutePanel>:
+    orientation: "vertical"
+    padding: dp(10)
+    Label:
+        text: root.summary
+        halign: "left"
+
+<EmergencyPopup>:
+    size_hint: .86, .42
+    auto_dismiss: False
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(18)
+        spacing: dp(12)
+        Label:
+            text: "SEVERITY: " + root.severity
+            bold: True
+        Label:
+            text: "Distance: " + root.distance + "\nAction: " + root.recommended_action
+        Button:
+            text: "ACKNOWLEDGE"
+            size_hint_y: None
+            height: dp(48)
+            on_release: root.dismiss()
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+        StatusBar:
+            id: status_bar
+        Label:
+            text: "RELIEF-RL • DISASTER EVACUATION ASSISTANT"
+            size_hint_y: None
+            height: dp(40)
+            bold: True
+        MapPanel:
+            id: map_panel
+            size_hint_y: .45
+        MetricsPanel:
+            id: metrics_panel
+            size_hint_y: .20
+        BoxLayout:
+            size_hint_y: None
+            height: dp(52)
+            spacing: dp(6)
+            Button:
+                text: "SAFE ROUTE"
+                on_release: root.on_safe_route_pressed()
+            Button:
+                text: "UPDATE"
+                on_release: root.on_update_pressed()
+            Button:
+                text: "SIMULATE"
+                on_release: root.on_simulate_pressed()
+            Button:
+                text: "EMERGENCY"
+                on_release: root.on_emergency_pressed()
+
+<NavigationScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+        Label:
+            text: "SAFE NAVIGATION"
+            size_hint_y: None
+            height: dp(44)
+            bold: True
+        MapPanel:
+            id: map_panel
+        RoutePanel:
+            id: route_panel
+            size_hint_y: .22
+
+<EmergencyScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(18)
+        Label:
+            text: "EMERGENCY MODE"
+            font_size: "28sp"
+            bold: True
+        Label:
+            text: root.disclaimer_text
+            text_size: self.width, None
+        Button:
+            text: "BACK TO DASHBOARD"
+            size_hint_y: None
+            height: dp(52)
+            on_release: root.manager.current = "home"

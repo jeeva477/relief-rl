@@ -1,0 +1,166 @@
+{
+  "EASY": {
+    "ShortestSafe": {
+      "n_episodes": 15,
+      "success_rate": 1.0,
+      "mean_reward": 55.74359773414673,
+      "mean_steps": 12.866666666666667,
+      "mean_hazard_exposure": 0.14651504415312208,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 0.0,
+      "route_efficiency": 1.3738973186969454,
+      "std_reward": 1.0197869115295066,
+      "std_success_rate": 0.0
+    },
+    "RuleHeuristic": {
+      "n_episodes": 15,
+      "success_rate": 0.8,
+      "mean_reward": 44.3199098382572,
+      "mean_steps": 21.533333333333335,
+      "mean_hazard_exposure": 0.0,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 0.2,
+      "route_efficiency": 2.177838964305629,
+      "std_reward": 23.284061202945473,
+      "std_success_rate": 0.4
+    },
+    "ActorCritic": {
+      "n_episodes": 15,
+      "success_rate": 0.0,
+      "mean_reward": -4.721553967333109,
+      "mean_steps": 60.0,
+      "mean_hazard_exposure": 0.0,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 1.0,
+      "route_efficiency": 6.524181334606863,
+      "std_reward": 0.5412650287986214,
+      "std_success_rate": 0.0
+    }
+  },
+  "MEDIUM": {
+    "ShortestSafe": {
+      "n_episodes": 15,
+      "success_rate": 1.0,
+      "mean_reward": 53.03194935255912,
+      "mean_steps": 12.866666666666667,
+      "mean_hazard_exposure": 0.8247699812876352,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 0.0,
+      "route_efficiency": 1.3738973186969454,
+      "std_reward": 3.473574904883696,
+      "std_success_rate": 0.0
+    },
+    "RuleHeuristic": {
+      "n_episodes": 15,
+      "success_rate": 0.5333333333333333,
+      "mean_reward": 29.36552719866543,
+      "mean_steps": 36.6,
+      "mean_hazard_exposure": 0.00043985442535895714,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 0.4666666666666667,
+      "route_efficiency": 3.982318238646121,
+      "std_reward": 28.578528353091432,
+      "std_success_rate": 0.4988876515698588
+    },
+    "ActorCritic": {
+      "n_episodes": 15,
+      "success_rate": 0.0,
+      "mean_reward": -4.750927895708798,
+      "mean_steps": 60.0,
+      "mean_hazard_exposure": 0.0,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 1.0,
+      "route_efficiency": 6.524181334606863,
+      "std_reward": 0.5284075510806947,
+      "std_success_rate": 0.0
+    }
+  },
+  "HARD": {
+    "ShortestSafe": {
+      "n_episodes": 15,
+      "success_rate": 1.0,
+      "mean_reward": 39.52091087191078,
+      "mean_steps": 13.0,
+      "mean_hazard_exposure": 4.202019793881619,
+      "violation_rate": 0.0,
+      "unsafe_action_rate": 0.0,
+      "timeout_rate": 0.0,
+      "route_efficiency": 1.391404843078242,
+      "std_reward": 9.853901579717343,
+      "std_success_rate": 0.0
+    },
+    "RuleHeuristic": {
+      "n_episodes": 15,
+      "success_rate": 0.13333333333333333,
+      "mean_reward": -154.9284806114382,
+      "mean_steps": 58.6,
+      "mean_hazard_exposure": 22.36253475922066,
+      "violation_rate": 0.4,
+      "unsafe_action_rate": 0.0468361581920904,
+      "timeout_rate": 0.8666666666666667,
+      "route_efficiency": 6.347194022240443,
+      "std_reward": 145.88531222318872,
+      "std_success_rate": 0.3399346342395189
+    },
+    "ActorCritic": {
+      "n_episodes": 15,
+      "success_rate": 0.0,
+      "mean_reward": -310.63330406080587,
+      "mean_steps": 60.0,
+      "mean_hazard_exposure": 28.98579354369657,
+      "violation_rate": 0.3333333333333333,
+      "unsafe_action_rate": 0.12666666666666665,
+      "timeout_rate": 1.0,
+      "route_efficiency": 6.524181334606863,
+      "std_reward": 312.5013429699209,
+      "std_success_rate": 0.0
+    }
+  },
+  "EXTREME": {
+    "ShortestSafe": {
+      "n_episodes": 15,
+      "success_rate": 0.6666666666666666,
+      "mean_reward": -230.08741595056287,
+      "mean_steps": 29.0,
+      "mean_hazard_exposure": 17.528186337092954,
+      "violation_rate": 0.26666666666666666,
+      "unsafe_action_rate": 0.13777777777777775,
+      "timeout_rate": 0.3333333333333333,
+      "route_efficiency": 3.0450579001744313,
+      "std_reward": 477.89017780517196,
+      "std_success_rate": 0.47140452079103173
+    },
+    "RuleHeuristic": {
+      "n_episodes": 15,
+      "success_rate": 0.2,
+      "mean_reward": -183.17247835474217,
+      "mean_steps": 56.53333333333333,
+      "mean_hazard_exposure": 26.581992866676618,
+      "violation_rate": 0.6,
+      "unsafe_action_rate": 0.061878306878306887,
+      "timeout_rate": 0.8,
+      "route_efficiency": 6.1366422380382915,
+      "std_reward": 151.05413725616654,
+      "std_success_rate": 0.4000000000000001
+    },
+    "ActorCritic": {
+      "n_episodes": 15,
+      "success_rate": 0.0,
+      "mean_reward": -414.65849791215425,
+      "mean_steps": 60.0,
+      "mean_hazard_exposure": 36.641396365109856,
+      "violation_rate": 0.4,
+      "unsafe_action_rate": 0.17555555555555552,
+      "timeout_rate": 1.0,
+      "route_efficiency": 6.524181334606863,
+      "std_reward": 384.9475370031313,
+      "std_success_rate": 0.0
+    }
+  }
+}

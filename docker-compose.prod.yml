@@ -1,0 +1,73 @@
+# Production stack for a real domain with automatic HTTPS.
+#
+#   cp .env.example .env            # fill in real secrets
+#   export DOMAIN=disastermind.example.com
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Caddy is the only internet-facing service (80/443). It gets a free
+# Let's Encrypt certificate for $DOMAIN automatically and proxies
+# everything to `web`, which in turn proxies /api and /ws to `api`
+# (see frontend/nginx.conf). Use docker-compose.yml instead for a quick
+# HTTP-only smoke test without a domain.
+
+services:
+  api:
+    build: .
+    expose:
+      - "8000"
+    env_file:
+      - .env
+    environment:
+      DEMO_MODE: "false"
+      MODEL_PATH: "rl/checkpoints/best_model.pt"
+      QRDQN_MODEL_PATH: "rl/checkpoints/qrdqn_best_model.pt"
+      CORS_ORIGINS: "${CORS_ORIGINS:-*}"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks:
+      - disastermind
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: ${VITE_API_BASE:-/api/sim}
+        VITE_WS_BASE: ${VITE_WS_BASE:-}
+    expose:
+      - "80"            # not published to the host -- only Caddy talks to it
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - disastermind
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: "${DOMAIN:?Set DOMAIN to your public hostname, e.g. disastermind.example.com}"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+    networks:
+      - disastermind
+
+networks:
+  disastermind:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

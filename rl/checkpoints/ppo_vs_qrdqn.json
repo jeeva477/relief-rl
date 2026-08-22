@@ -1,0 +1,45 @@
+{
+  "episodes": 30,
+  "seed": 7,
+  "difficulty": "MEDIUM",
+  "disaster": "any",
+  "agents": {
+    "PPO": {
+      "n_episodes": 30,
+      "success_rate": 0.4667,
+      "mean_reward": -63.728,
+      "std_reward": 180.267,
+      "mean_steps": 59.1,
+      "mean_response_time_s": 24.71,
+      "mean_rescues": 23.7,
+      "mean_unmet": 30.53,
+      "mean_resource_usage": 0.0,
+      "mean_failed_actions": 0.0,
+      "mean_distance": 55.5,
+      "route_efficiency": 5.286,
+      "violation_rate": 0.2,
+      "timeout_rate": 0.5333,
+      "mean_penalty": 107.503,
+      "std_penalty": 151.544
+    },
+    "QR-DQN": {
+      "n_episodes": 30,
+      "success_rate": 0.0333,
+      "mean_reward": -159.585,
+      "std_reward": 242.999,
+      "mean_steps": 99.63,
+      "mean_response_time_s": 178.0,
+      "mean_rescues": 1.47,
+      "mean_unmet": 55.8,
+      "mean_resource_usage": 1.17,
+      "mean_failed_actions": 0.0,
+      "mean_distance": 18.5,
+      "route_efficiency": 2.025,
+      "violation_rate": 0.2,
+      "timeout_rate": 0.9667,
+      "mean_penalty": 164.075,
+      "std_penalty": 241.477
+    }
+  },
+  "note": "All agents ran on the identical set of seeded scenarios. Missing agents indicate no compatible checkpoint was found (not fabricated)."
+}

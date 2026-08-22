@@ -1,0 +1,16 @@
+# Backend/runtime dependencies for FastAPI + RL inference
+# Mobile-only dependencies are intentionally excluded from the server image.
+torch>=2.2
+gymnasium>=0.29
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+httpx>=0.27
+python-dotenv>=1.0
+sqlalchemy>=2.0
+psycopg[binary]>=3.2
+alembic>=1.13
+shapely>=2.0

@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: relief-rl-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: relief_rl
+      POSTGRES_USER: relief
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    ports:
+      - "5432:5432"
+    volumes:
+      - relief_rl_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U relief -d relief_rl"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  relief_rl_pgdata:

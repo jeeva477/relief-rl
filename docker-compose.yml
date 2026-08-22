@@ -1,0 +1,49 @@
+services:
+  api:
+    build: .
+    expose:
+      - "8000"          # only reachable from other containers (web proxies to it)
+    env_file:
+      - .env
+    environment:
+      DEMO_MODE: "true"
+      MODEL_PATH: "rl/checkpoints/best_model.pt"
+      QRDQN_MODEL_PATH: "rl/checkpoints/qrdqn_best_model.pt"
+      # Same-origin via the nginx reverse proxy in `web`, so the browser
+      # never calls this origin directly -- CORS_ORIGINS stays empty/unused
+      # in production. Override in .env if you expose the API separately.
+      CORS_ORIGINS: "${CORS_ORIGINS:-*}"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks:
+      - disastermind
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: ${VITE_API_BASE:-/api/sim}
+        VITE_WS_BASE: ${VITE_WS_BASE:-}
+    ports:
+      - "${WEB_PORT:-80}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - disastermind
+
+networks:
+  disastermind:
+    driver: bridge
